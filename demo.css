@@ -1,0 +1,13 @@
+h5 {
+		border: 1px dotted red; margin:30px; padding:10px; width: 600px;
+	}
+	
+table {
+	border: 1px dashed black;
+	margin: 30px;
+	width: 630px;
+}
+
+tr.border-bottom td {
+  border-bottom:1pt solid black;
+}
