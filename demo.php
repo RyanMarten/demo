@@ -33,6 +33,7 @@
             email    VARCHAR(150)
         );
      -->
+     
 </head>
 <body>
 <h1> Testing Databases and PHP </h1>
