@@ -4,6 +4,35 @@
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js" type="text/javascript" ></script>
 	<script src="js.js" type="text/javascript" ></script>
 	<link rel="stylesheet" type='text/css' href="css.css">
+	<style>
+    table {
+    	margin: 30px;
+    	width: 500px;
+    }
+    
+    tr.border-bottom td {
+      border-bottom:1pt solid black;
+    }
+	</style>
+	
+	<!-- Database Config
+    In terminal:
+        mysql-ctl start
+        mysql-ctl cli
+        
+        UPDATE mysql.user SET user='root',
+         password=PASSWORD('') WHERE user='newusername';
+        
+        FLUSH PRIVILEGES;
+         
+        CREATE DATABASE demo;
+         
+        CREATE TABLE demo.students
+        (
+            name    VARCHAR(150),
+            email    VARCHAR(150)
+        );
+     -->
 </head>
 <body>
 <h1> Testing Databases and PHP </h1>
@@ -43,26 +72,29 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 
 ?>
-</h5>
-<table>
-<caption>Table `students` in dataset `demo`</caption>
-		<tr class="border-bottom">
-			<th>Name</th><th>Email</th>
-		</tr>
+
 <?php
 	
 	$result = mysql_query("select * from students") or die("Failed to query database: ". mysql_error());
 	if (mysql_num_rows($result) > 0) {
     // output data of each row
+    echo "</h5>
+        <table>
+        <caption>Table `students` in dataset `demo`</caption>
+		<tr class='border-bottom'>
+			<th>Name</th><th>Email</th>
+		</tr>
+		<tr><td></td></tr>";
     while($row = mysql_fetch_assoc($result)) {
         echo "<tr class=\"border-bottom\"><td>" . $row["name"]. "</td><td>" . $row["email"]."</td></tr>";
     }
-} else {
+    echo "</table>";
+    } else {
     echo "0 results";
-}
+    }
 	
 ?>
-</table>
+
 </body>
 </html>
 
